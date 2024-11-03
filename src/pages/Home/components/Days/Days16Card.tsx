@@ -1,9 +1,9 @@
 import s from "./Days.module.scss";
-import { Days } from "./Days";
+import { DaysInfo } from "./Days";
 import { GlobalSvgSelector } from "../../../../assets/icons/global/GlobalSvgSelector";
 
 interface Props {
-  day: Days;
+  day: DaysInfo;
   onClick: () => void;
 }
 

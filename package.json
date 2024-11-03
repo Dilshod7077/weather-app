@@ -2,6 +2,15 @@
   "name": "weather-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://dilshod7077.github.io/weather-app/",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "lint": "eslint -c .eslintrc.json ./src/**/**/*.{ts,tsx} --fix",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.7",
     "@testing-library/jest-dom": "^5.17.0",
@@ -30,15 +39,6 @@
     "scss": "^0.2.4",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
-  },
-  "homepage": "https://dilshod7077.github.io/weather-app/",
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [

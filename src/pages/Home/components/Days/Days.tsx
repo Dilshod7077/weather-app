@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Card } from "./Card";
 import s from "./Days.module.scss";
 import { Tabs } from "./Tabs";
@@ -27,7 +27,7 @@ export interface Today {
   temp_min: string;
   info: string;
 }
-export interface Days {
+export interface DaysInfo {
   day_info: string;
   icon_id: string;
   temp_max: string;
@@ -145,7 +145,7 @@ export const Days = ({ weather, togglePopup, togglePopupDaily }: Props) => {
     (dayName, index) => createDay(index, dayName)
   );
 
-  const sixteenDays: Days[] = weather.daily.time
+  const sixteenDays: DaysInfo[] = weather.daily.time
     .slice(0, 16)
     .map((time, index) => ({
       day_info: formatDate(weather.daily.time[index]),
@@ -156,13 +156,6 @@ export const Days = ({ weather, togglePopup, togglePopupDaily }: Props) => {
         weatherDescription[weather.daily.weather_code[index]] ||
         "Неизвестная погода",
     }));
-
-  const days =
-    selectedTab === "На сегодня"
-      ? today
-      : selectedTab === "На неделю"
-      ? week
-      : sixteenDays;
 
   return (
     <>

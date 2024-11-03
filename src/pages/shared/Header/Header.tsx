@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import s from "./Header.module.scss";
 import { GlobalSvgSelector } from "../../../assets/icons/global/GlobalSvgSelector";
 import Select from "react-select";
@@ -105,6 +105,7 @@ export const Header = ({ onCitySelect }: Props) => {
           <GlobalSvgSelector id="change-theme" />
         </div>
         <Select
+        inputValue={inputValue}
           onInputChange={inputChange}
           onChange={handleCitySelect}
           styles={colorStyles}

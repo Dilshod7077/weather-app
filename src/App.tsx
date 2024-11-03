@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home/Home";
 import { Header } from "./pages/shared/Header/Header";
@@ -85,7 +85,7 @@ function App() {
         <Header onCitySelect={onCitySelect} />
         <Routes>
           <Route
-            path="/"
+            path="/weather-app"
             element={
               <Home
                 togglePopup={togglePopup}
