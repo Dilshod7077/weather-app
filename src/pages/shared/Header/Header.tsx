@@ -105,12 +105,13 @@ export const Header = ({ onCitySelect }: Props) => {
           <GlobalSvgSelector id="change-theme" />
         </div>
         <Select
-        inputValue={inputValue}
+          inputValue={inputValue}
           onInputChange={inputChange}
           onChange={handleCitySelect}
           styles={colorStyles}
           options={options}
           isClearable
+          placeholder='Введите город'
         />
       </div>
     </header>
