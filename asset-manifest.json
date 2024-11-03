@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/Dilshod7077/weather-app.git/static/css/main.b15847f5.css",
-    "main.js": "/Dilshod7077/weather-app.git/static/js/main.90740490.js",
-    "static/media/cloud.png": "/Dilshod7077/weather-app.git/static/media/cloud.93ea380a4d88cb8d7cf1.png",
-    "index.html": "/Dilshod7077/weather-app.git/index.html",
-    "main.b15847f5.css.map": "/Dilshod7077/weather-app.git/static/css/main.b15847f5.css.map",
-    "main.90740490.js.map": "/Dilshod7077/weather-app.git/static/js/main.90740490.js.map"
+    "main.css": "/weather-app/static/css/main.b15847f5.css",
+    "main.js": "/weather-app/static/js/main.9b261650.js",
+    "static/media/cloud.png": "/weather-app/static/media/cloud.93ea380a4d88cb8d7cf1.png",
+    "index.html": "/weather-app/index.html",
+    "main.b15847f5.css.map": "/weather-app/static/css/main.b15847f5.css.map",
+    "main.9b261650.js.map": "/weather-app/static/js/main.9b261650.js.map"
   },
   "entrypoints": [
     "static/css/main.b15847f5.css",
-    "static/js/main.90740490.js"
+    "static/js/main.9b261650.js"
   ]
 }
