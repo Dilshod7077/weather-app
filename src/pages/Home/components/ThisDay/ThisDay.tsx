@@ -1,11 +1,12 @@
-import React from "react";
 import s from "./ThisDay.module.scss";
 import { GlobalSvgSelector } from "../../../../assets/icons/global/GlobalSvgSelector";
 import { Weather } from "../../../../store/types/types";
+import { CircleFlag } from "react-circle-flags";
 
 interface Props {
   weather: Weather;
   city: string | null;
+  countryCode: string | null;
 }
 
 const formatTime = (time: string): string => {
@@ -13,7 +14,7 @@ const formatTime = (time: string): string => {
   return date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 };
 
-export const ThisDay = ({ weather, city }: Props) => {
+export const ThisDay = ({ weather, city, countryCode }: Props) => {
   const weatherIcon: { [key: number]: string } = {
     0: "sun",
     1: "clear_sky",
@@ -62,7 +63,19 @@ export const ThisDay = ({ weather, city }: Props) => {
           Время: <span>{formatTime(weather.current.time)}</span>
         </div>
         <div className={s.this__city}>
-          Город: <span>{city || "Не выбрано"}</span>
+          Город:{" "}
+          <span>
+            {city || "Не выбрано"} ({countryCode})
+          </span>
+          {countryCode && (
+            <span>
+              <CircleFlag
+                countryCode={countryCode.toLowerCase()}
+                width={25}
+                height={25}
+              />
+            </span>
+          )}
         </div>
       </div>
     </div>

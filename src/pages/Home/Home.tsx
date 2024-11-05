@@ -12,6 +12,7 @@ interface Props {
   togglePopupDaily: () => void;
   coordinates: { latitude: number; longitude: number };
   selectedCity: string | null;
+  countryCode: string | null;
 }
 
 export const Home = ({
@@ -19,6 +20,7 @@ export const Home = ({
   togglePopupDaily,
   coordinates,
   selectedCity,
+  countryCode,
 }: Props) => {
   const dispatch = useCustomDispatch();
   const { weather } = useCustomSelector(selectCurrentWeatherData);
@@ -30,7 +32,11 @@ export const Home = ({
   return (
     <div className={s.home}>
       <div className={s.wrapper}>
-        <ThisDay weather={weather} city={selectedCity} />
+        <ThisDay
+          weather={weather}
+          city={selectedCity}
+          countryCode={countryCode}
+        />
         <ThisDayInfo weather={weather} />
       </div>
       <Days

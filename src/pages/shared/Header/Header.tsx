@@ -1,20 +1,43 @@
 import { useState } from "react";
 import s from "./Header.module.scss";
 import { GlobalSvgSelector } from "../../../assets/icons/global/GlobalSvgSelector";
-import Select from "react-select";
+import Select, { components } from "react-select";
 import { useTheme } from "../../../hooks/useTheme";
 import { Theme } from "../../../context/ThemeContext";
+import { CircleFlag } from "react-circle-flags";
 
 interface CityOption {
   name: string;
   label: string;
+  country_code: string;
   latitude: number;
   longitude: number;
 }
 
 interface Props {
-  onCitySelect: (name: string, latitude: number, longitude: number) => void;
+  onCitySelect: (
+    name: string,
+    country_code: string,
+    latitude: number,
+    longitude: number
+  ) => void;
 }
+
+const CustomOption = (props: any) => {
+  const { data } = props;
+  return (
+    <components.Option {...props}>
+      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+        <span>{data.label}</span>
+        <CircleFlag
+          countryCode={data.country_code.toLowerCase()}
+          width={20}
+          height={20}
+        />
+      </div>
+    </components.Option>
+  );
+};
 
 export const Header = ({ onCitySelect }: Props) => {
   const theme = useTheme();
@@ -33,6 +56,10 @@ export const Header = ({ onCitySelect }: Props) => {
       zIndex: 100,
     }),
     singleValue: (styles: any) => ({
+      ...styles,
+      color: theme.theme === Theme.DARK ? "#fff" : "#000",
+    }),
+    input: (styles: any) => ({
       ...styles,
       color: theme.theme === Theme.DARK ? "#fff" : "#000",
     }),
@@ -59,18 +86,30 @@ export const Header = ({ onCitySelect }: Props) => {
   }
 
   const fetchCities = async (input: string) => {
-    const response = await fetch(
-      `https://geocoding-api.open-meteo.com/v1/search?name=${input}&count=10&language=ru&format=json`
-    );
-    const data = await response.json();
-    const cityOptions = data.results.map((city: any) => ({
-      name: city.name,
-      label: city.name,
-      latitude: city.latitude,
-      longitude: city.longitude,
-    }));
-
-    setOptions(cityOptions);
+    try {
+      const response = await fetch(
+        `https://geocoding-api.open-meteo.com/v1/search?name=${input}&count=10&language=ru&format=json`
+      );
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      if (data && data.results) {
+        const cityOptions = data.results.map((city: any) => ({
+          name: city.name,
+          label: city.name,
+          country_code: city.country_code,
+          latitude: city.latitude,
+          longitude: city.longitude,
+        }));
+        setOptions(cityOptions);
+      } else {
+        setOptions([]);
+      }
+    } catch (error) {
+      console.error("Error fetching cities:", error);
+      setOptions([]);
+    }
   };
 
   const inputChange = (inputValue: string) => {
@@ -86,6 +125,7 @@ export const Header = ({ onCitySelect }: Props) => {
     if (selectedOption) {
       onCitySelect(
         selectedOption.name,
+        selectedOption.country_code,
         selectedOption.latitude,
         selectedOption.longitude
       );
@@ -111,7 +151,8 @@ export const Header = ({ onCitySelect }: Props) => {
           styles={colorStyles}
           options={options}
           isClearable
-          placeholder='Введите город'
+          placeholder="Введите город"
+          components={{ Option: CustomOption }}
         />
       </div>
     </header>

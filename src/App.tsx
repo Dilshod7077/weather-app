@@ -15,6 +15,7 @@ function App() {
   );
   const [popupIndex, setPopupIndex] = useState<number | null>(null);
   const defaultCity = "Khujand";
+  const defaultCountry = "TJ";
   const defaultCoordinates = { latitude: 40.28256, longitude: 69.62216 };
   const [selectedCity, setSelectedCity] = useState<string>(() => {
     return localStorage.getItem("selectedCity") || defaultCity;
@@ -22,6 +23,9 @@ function App() {
   const [coordinates, setCoordinates] = useState(() => {
     const savedCoordinates = localStorage.getItem("coordinates");
     return savedCoordinates ? JSON.parse(savedCoordinates) : defaultCoordinates;
+  });
+  const [countryCode, setCountryCode] = useState<string>(() => {
+    return localStorage.getItem("countryCode") || defaultCountry;
   });
 
   const togglePopup = (weatherData?: Weather, index?: number) => {
@@ -51,10 +55,17 @@ function App() {
     }
   };
 
-  const onCitySelect = (name: string, latitude: number, longitude: number) => {
+  const onCitySelect = (
+    name: string,
+    country_code: string,
+    latitude: number,
+    longitude: number
+  ) => {
     setCoordinates({ latitude, longitude });
     setSelectedCity(name);
+    setCountryCode(country_code);
     localStorage.setItem("selectedCity", name);
+    localStorage.setItem("countryCode", country_code);
     localStorage.setItem(
       "coordinates",
       JSON.stringify({ latitude, longitude })
@@ -68,7 +79,7 @@ function App() {
           togglePopup={togglePopup}
           weather={popupWeatherData}
           index={popupIndex}
-          city={selectedCity} 
+          city={selectedCity}
         />
       )}
       {isPopupDailyOpen && popupWeatherData && popupIndex !== null && (
@@ -78,7 +89,7 @@ function App() {
           togglePopupDaily={togglePopupDaily}
           weather={popupWeatherData}
           index={popupIndex}
-          city={selectedCity} 
+          city={selectedCity}
         />
       )}
       <div className="container">
@@ -92,6 +103,7 @@ function App() {
                 togglePopupDaily={togglePopupDaily}
                 coordinates={coordinates}
                 selectedCity={selectedCity}
+                countryCode={countryCode}
               />
             }
           />
