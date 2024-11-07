@@ -37,6 +37,7 @@ const initialState: CurrentWeather = {
       wind_speed_10m: 0,
       wind_direction_10m: 0,
       weather_code: 0,
+      is_day: 0,
     },
     hourly: {
       time: [],
@@ -46,6 +47,7 @@ const initialState: CurrentWeather = {
       weather_code: [],
       pressure_msl: [],
       wind_speed_10m: [],
+      is_day: []
     },
     daily: {
       time: [],

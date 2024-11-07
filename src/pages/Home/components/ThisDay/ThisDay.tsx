@@ -71,8 +71,9 @@ export const ThisDay = ({ weather, city, countryCode }: Props) => {
             <span>
               <CircleFlag
                 countryCode={countryCode.toLowerCase()}
-                width={25}
-                height={25}
+                // width={25}
+                // height={25}
+                className={s.circle_flag}
               />
             </span>
           )}

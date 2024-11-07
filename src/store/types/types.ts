@@ -21,6 +21,7 @@ export type Weather = {
     wind_direction_10m: number;
     wind_speed_10m: number;
     weather_code: number;
+    is_day: number;
   };
   hourly: {
     time: string[]; 
@@ -30,6 +31,7 @@ export type Weather = {
     pressure_msl: number[];
     weather_code: number[];
     wind_speed_10m: number[];
+    is_day: number[];
   }
   daily: {
     time: string[];

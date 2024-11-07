@@ -8,7 +8,7 @@ function generateParams(latitude: number, longitude: number) {
     longitude,
     forecast_days: 16,
     current: "temperature_2m,apparent_temperature,pressure_msl,precipitation,wind_speed_10m,wind_direction_10m,weather_code",
-    hourly: "temperature_2m,apparent_temperature,precipitation,weather_code,pressure_msl,wind_speed_10m",
+    hourly: "temperature_2m,apparent_temperature,precipitation,weather_code,pressure_msl,wind_speed_10m,is_day",
     daily: "temperature_2m_max,wind_speed_10m_max,precipitation_probability_max,wind_direction_10m_dominant,temperature_2m_min,apparent_temperature_max,weather_code"
   };
 }

@@ -7,6 +7,14 @@
   background: var(#{--components-background-default});
   box-shadow: $box-shadow;
   border-radius: $border-radius;
+  @media (max-width: 1024px) {
+    max-width: 250px;
+    padding: 36px;
+  }
+  @media (max-width: 480px) {
+    max-width: 100%;
+    padding: 20px;
+  }
 }
 .top__block {
   display: flex;
@@ -14,18 +22,41 @@
   align-items: center;
   width: 100%;
   margin-bottom: 30px;
+  @media (max-width: 1024px) {
+    margin-bottom: 15px;
+  }
   svg {
-    width: 119px;
-    height: 119px;
+    width: 120px;
+    height: 120px;
+    @media (max-width: 1024px) {
+      width: 66px;
+      height: 66px;
+    }
+    @media (max-width: 480px) {
+      width: 160px;
+      height: 160px;
+    }
   }
   .this__temp {
     font-size: 96px;
     font-weight: bold;
     color: $primary-color;
+    @media (max-width: 1024px) {
+      font-size: 72px;
+    }
+    @media (max-width: 480px) {
+      font-size: 96px;
+    }
   }
   .this__day_name {
     font-size: 40px;
     color: var(#{--text-color-default});
+    @media (max-width: 1024px) {
+      font-size: 28px;
+    }
+    @media (max-width: 480px) {
+      font-size: 40px;
+    }
   }
 }
 
@@ -36,8 +67,29 @@
     font-size: 25px;
     display: flex;
     gap: 8px;
+    @media (max-width: 1024px) {
+      font-size: 16px;
+    }
+    @media (max-width: 480px) {
+      font-size: 25px;
+    }
+    .circle_flag {
+      width: 25px;
+      height: 25px;
+      @media (max-width: 1024px) {
+        width: 16px;
+        height: 16px;
+      }
+      @media (max-width: 480px) {
+        width: 25px;
+        height: 25px;
+      }
+    }
   }
   .this__time {
     margin-bottom: 14px;
+    @media (max-width: 1024px) {
+      margin-bottom: 7px;
+    }
   }
 }

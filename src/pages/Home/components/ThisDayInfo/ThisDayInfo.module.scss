@@ -8,6 +8,9 @@
   box-shadow: $box-shadow;
   border-radius: $border-radius;
   background: var(#{--components-background-default});
+  @media (max-width: 1024px) {
+    padding: 20px;
+  }
 }
 
 .item {
@@ -32,12 +35,21 @@
     background-color: #fff;
     box-shadow: 1px 4px 10px -1px rgba(71, 147, 255, 0.2);
     border-radius: 50%;
-    box-shadow: $box
+    box-shadow: $box;
   }
 
   .indicator__name,
   .indicator__value {
     font-size: 14px;
+    z-index: 999;
+    @media (max-width: 480px) {
+      font-size: 16px;
+    }
+  }
+  .indicator__value{
+    @media (max-width: 480px) {
+      font-size: 12px;
+    }
   }
   .indicator__name {
     color: $base-color;
@@ -51,4 +63,7 @@
   position: absolute;
   top: 0;
   right: 0;
+  @media (max-width: 1024px) {
+    width: 60%;
+  }
 }

@@ -11,16 +11,17 @@ body {
   font-family: "Overpass", sans-serif;
   font-optical-sizing: auto;
   background: var(#{--body-background-default});
-  // text-shadow: 
-  // 1px 1px 0 rgba(0, 0, 0, 0.1), 
-  // 2px 2px 0 rgba(0, 0, 0, 0.1), 
-  // 3px 3px 0 rgba(0, 0, 0, 0.1),
-  // 4px 4px 0 rgba(0, 0, 0, 0.1 );
+  background-size: cover;
 
 }
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding-top: 20px;
+  @media (max-width: 1024px) {
+    padding: 20px;
+  }
+  @media (max-width: 480px) {
+  }
 }
 
