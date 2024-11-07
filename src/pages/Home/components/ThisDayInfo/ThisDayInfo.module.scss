@@ -42,9 +42,6 @@
   .indicator__value {
     font-size: 14px;
     z-index: 999;
-    @media (max-width: 480px) {
-      font-size: 16px;
-    }
   }
   .indicator__value{
     @media (max-width: 480px) {

@@ -3,16 +3,35 @@ import { Item } from "../../Home/components/ThisDayInfo/ThisDayInfo";
 import { ThisDayItem } from "../../Home/components/ThisDayInfo/ThisDayItem";
 import { GlobalSvgSelector } from "../../../assets/icons/global/GlobalSvgSelector";
 import { Weather } from "../../../store/types/types";
+import { useEffect, useRef } from "react";
 
 interface Props {
   togglePopup: () => void;
   weather: Weather;
   index: number;
   city: string | null;
-
 }
 
 export const Popup = ({ togglePopup, weather, index, city }: Props) => {
+  
+  const popupRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    const handleClickOutside = (event: MouseEvent) => {
+      if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
+        togglePopup();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.body.style.overflow = "auto";
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [togglePopup]);
+
   const items: Item[] = [
     {
       icon_id: "temp",
@@ -81,7 +100,7 @@ export const Popup = ({ togglePopup, weather, index, city }: Props) => {
   return (
     <>
       <div className={s.blur}></div>
-      <div className={s.popup}>
+      <div className={s.popup} ref={popupRef}>
         <div className={s.day}>
           <div className={s.day__temp}>
             {Math.floor(weather.hourly.temperature_2m[index])}°

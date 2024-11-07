@@ -11,9 +11,17 @@
   border-radius: 0 0 $border-radius $border-radius;
   overflow-x: auto;
   gap: 15px;
+  @media (max-width: 480px) {
+    flex-direction: column;
+    height: 400px;
+    padding: 10px;
+  }
 
   &::-webkit-scrollbar {
     height: 8px;
+    @media (max-width: 480px) {
+      width: 0px;
+    }
   }
 
   &::-webkit-scrollbar-thumb {
@@ -37,37 +45,61 @@
   transition: 0.3s;
   cursor: pointer;
   min-width: 149px;
+  @media (max-width: 480px) {
+    flex-direction: row;
+    padding: 12px;
+    width: 100%;
+    justify-content: space-between;
+  }
 
   .day {
     margin-bottom: 7px;
     font-size: 18px;
     color: var(--text-color-default);
+    @media (max-width: 480px) {
+     margin-top: 20px;
+    }
   }
 
   .day__info {
     font-size: 14px;
     margin-bottom: 12px;
     color: $base-color;
+    @media (max-width: 480px) {
+      margin-top: 20px;
+     }
   }
 
   .img {
     margin-bottom: 12px;
+    @media (max-width: 480px) {
+      margin-bottom: 0px;
+    }
   }
 
   .temp__day {
     font-size: 18px;
     color: var(--text-color-default);
+    @media (max-width: 480px) {
+      margin-top: 20px;
+     }
   }
 
   .temp__night {
     font-size: 13px;
     color: $base-color;
     margin-bottom: 6px;
+    @media (max-width: 480px) {
+      margin-top: 20px;
+     }
   }
 
   .info {
     font-size: 13px;
     color: $base-color;
+    @media (max-width: 480px) {
+      display: none;
+    }
   }
 
   &:hover {
@@ -104,9 +136,25 @@
   &.active {
     background: $primary-color;
     color: #fff;
+    @media (max-width: 480px) {
+      background: $primary-color;
+    }
   }
 }
 
 .tabs__wrapper {
   display: flex;
+}
+.select {
+  box-shadow: 2px 5px 25px -3px rgba(180, 180, 180, 0.25);
+  border-radius: 5px;
+  padding: 9px 20px;
+  background-color: var(--components-background-default);
+  color: var(--text-color-default);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+  cursor: pointer;
 }

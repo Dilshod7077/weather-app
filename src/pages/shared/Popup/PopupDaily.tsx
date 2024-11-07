@@ -3,6 +3,7 @@ import { Item } from "../../Home/components/ThisDayInfo/ThisDayInfo";
 import { ThisDayItem } from "../../Home/components/ThisDayInfo/ThisDayItem";
 import { GlobalSvgSelector } from "../../../assets/icons/global/GlobalSvgSelector";
 import { Weather } from "../../../store/types/types";
+import { useEffect, useRef } from "react";
 
 interface Props {
   togglePopupDaily: () => void;
@@ -13,13 +14,18 @@ interface Props {
   city: string;
 }
 
-
 const getWindDirection = (degree: number): string => {
   const directions = [
-    "Север", "Северо-восток", "Восток", "Юго-восток",
-    "Юг", "Юго-запад", "Запад", "Северо-запад"
+    "Север",
+    "Северо-восток",
+    "Восток",
+    "Юго-восток",
+    "Юг",
+    "Юго-запад",
+    "Запад",
+    "Северо-запад",
   ];
-  
+
   const index = Math.round(degree / 45) % 8;
   return directions[index];
 };
@@ -40,8 +46,26 @@ export const PopupDaily = ({
   index,
   dayName,
   date,
-  city
+  city,
 }: Props) => {
+
+  const popupRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    const handleClickOutside = (event: MouseEvent) => {
+      if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
+        togglePopupDaily();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.body.style.overflow = "auto";
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [togglePopupDaily]);
   const items: Item[] = [
     {
       icon_id: "temp",
@@ -72,7 +96,9 @@ export const PopupDaily = ({
         weather.daily.wind_speed_10m_max?.[index] !== undefined
           ? `${Math.floor(
               weather.daily.wind_speed_10m_max[index]
-            )} м/с ${getWindDirection(weather.daily.wind_direction_10m_dominant[index])} - ${getWindClass(weather.daily.wind_speed_10m_max[index])}`
+            )} м/с ${getWindDirection(
+              weather.daily.wind_direction_10m_dominant[index]
+            )} - ${getWindClass(weather.daily.wind_speed_10m_max[index])}`
           : "Данные недоступны",
     },
   ];
@@ -111,7 +137,7 @@ export const PopupDaily = ({
   return (
     <>
       <div className={s.blur}></div>
-      <div className={s.popup}>
+      <div className={s.popup} ref={popupRef}>
         <div className={s.day}>
           <div className={s.day__temp}>
             {Math.floor(weather.daily.temperature_2m_max[index])}°

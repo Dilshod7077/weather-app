@@ -18,6 +18,14 @@
     max-width: 650px;
     top: 40%;
   }
+  @media (max-width: 480px) {
+    flex-direction: column;
+    padding: 20px;
+    left: 50%;
+    top: 50%;
+    max-width: 350px;
+    transform: translate(-50%, -50%);
+  }
 }
 
 .blur {
