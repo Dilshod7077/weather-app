@@ -1,7 +1,7 @@
 @import "../../../styles/variables.scss";
 
 .popup {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: calc(50% - 325px);
   z-index: 1001;
@@ -25,6 +25,14 @@
     top: 50%;
     max-width: 350px;
     transform: translate(-50%, -50%);
+  }
+  hr {
+    display: none;
+    @media (max-width: 480px) {
+      display: block;
+      width: 100%;
+      margin: 16px 0;
+    }
   }
 }
 
@@ -52,28 +60,46 @@
 }
 
 .day {
-  .day__temp {
-    font-weight: 500;
-    font-size: 60px;
-    color: $primary-color;
-    margin-bottom: 12px;
+  @media (max-width: 480px) {
   }
-  .day__name {
-    font-size: 25px;
-    line-height: 30px;
-    color: var(#{--text-color-default});
-    margin-bottom: 12px;
-  }
-  .img {
-    margin-bottom: 12px;
+  .day__wrapper {
+    display: flex;
+    .day__block {
+      .day__temp {
+        font-weight: 500;
+        font-size: 60px;
+        color: $primary-color;
+        margin-bottom: 12px;
+        @media (max-width: 480px) {
+          margin-bottom: 6px;
+        }
+      }
+      .day__name {
+        font-size: 25px;
+        line-height: 30px;
+        color: var(#{--text-color-default});
+        margin-bottom: 12px;
+        @media (max-width: 480px) {
+          font-size: 35px;
+        }
+      }
+    }
     svg {
       width: 53px;
       height: 53px;
+      @media (max-width: 480px) {
+        width: 73px;
+        height: 73px;
+      }
     }
   }
+
   .day__time,
   .day__city {
     font-size: 15px;
     color: $base-color;
+    @media (max-width: 480px) {
+      margin-bottom: 6px;
+    }
   }
 }

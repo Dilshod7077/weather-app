@@ -13,13 +13,15 @@ interface Props {
 }
 
 export const Popup = ({ togglePopup, weather, index, city }: Props) => {
-  
   const popupRef = useRef<HTMLDivElement>(null);
-  
+
   useEffect(() => {
     document.body.style.overflow = "hidden";
     const handleClickOutside = (event: MouseEvent) => {
-      if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
+      if (
+        popupRef.current &&
+        !popupRef.current.contains(event.target as Node)
+      ) {
         togglePopup();
       }
     };
@@ -102,11 +104,13 @@ export const Popup = ({ togglePopup, weather, index, city }: Props) => {
       <div className={s.blur}></div>
       <div className={s.popup} ref={popupRef}>
         <div className={s.day}>
-          <div className={s.day__temp}>
-            {Math.floor(weather.hourly.temperature_2m[index])}°
-          </div>
-          <div className={s.day__name}>Сегодня</div>
-          <div className={s.img}>
+          <div className={s.day__wrapper}>
+            <div className={s.day__block}>
+              <div className={s.day__temp}>
+                {Math.floor(weather.hourly.temperature_2m[index])}°
+              </div>
+              <div className={s.day__name}>Сегодня</div>
+            </div>
             <GlobalSvgSelector
               id={weatherIcon[weather.hourly.weather_code[index]] || "unknown"}
             />
@@ -124,6 +128,7 @@ export const Popup = ({ togglePopup, weather, index, city }: Props) => {
             Город: <span>{city || "Не выбрано"}</span>
           </div>
         </div>
+        <hr />
         <div className={s.this__day_info_items}>
           {items.map((item: Item) => (
             <ThisDayItem key={item.icon_id} item={item} />
